@@ -1,0 +1,159 @@
+<html lang="ca" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <title>Inici - Cases Disponibles</title>
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header>
+        <a href="inici.html"> <img src="/static/domotica.png" alt="logo" height="40" width="40" /> </a>
+        <input type="text" id="inputCerca" placeholder="Cercar..." 
+       oninput="filtrarCases(this.value)" autocomplete="off" />
+        <a href="perfil.html" class="boto-perfil">👤 Perfil d'usuari</a>
+      </header>
+
+      <!-- SIDEBAR DINÁMICO -->
+      <div id="mySidebar" class="w3-sidebar w3-bar-block w3-card w3-collapse" style="top: 70.5px; bottom: 186px; display: none; z-index: 1;">
+        {% for c in casas %}
+        <div class="w3-bar-item w3-button" onclick="toggleMenu('menuCasa{{ c.id }}')">
+          <a href="/casa{{ c.id }}.html">{{ c.nom }}</a> <i class="fa fa-caret-down"></i>
+        </div>
+        <div id="menuCasa{{ c.id }}" class="w3-hide w3-white w3-card-4">
+          {% for h in c.habitacions %}
+            <a href="/casa{{ c.id }}/habitacio{{ h.id }}.html" class="w3-bar-item w3-button">{{ h.nom }}</a>
+          {% else %}
+            <span class="w3-bar-item" style="color: gray; font-size: 0.8em; padding-left: 30px;">Sense habitacions</span>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+      
+      <div class="w3-col">
+        <main>
+    <div class="fil-ariadna" style="color: black;">
+      <a href="inici.html">Inici</a>
+    </div>
+    
+    <div class="main-top-bar">
+      <h1>Cases disponibles</h1>
+      <nav class="menu-add" style="margin-right: 6em">
+        <ul>
+          <li class="afegir">
+            <a href="#" onclick="document.getElementById('modalCasa').style.display='block'">Afegir casa</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="grid-habitacions">
+      {% for casa in casas %}
+      <section class="habitacio-card" style="width:100%; max-width:320px;" onclick="window.location.href='casa{{ casa.id }}.html'">
+        <div class="w3-card-4 test">
+          <img src="/static/casa1.jpeg" alt="Habitació" style="width:100%; opacity:0.85; border-radius: 8px 8px 0 0;" />
+          <div class="w3-container w3-center">
+            <h2><b>{{ casa.nom }}</b></h2>    
+          </div>
+        </div>
+      </section>
+    {% endfor %}
+    </div> 
+  </main>
+      </div>
+      
+      <footer class="footer" >
+        <div class="footer_contact">
+          <h3>Contact:</h3>
+          <p>domoticastic@gmail.com</p>
+          <p>640896703</p>
+        </div>
+        <div class="footer_section">
+          <h3>About us</h3>
+          <ul class="footer_links">
+            <li><a href="#"> Blog </a></li>
+            <li><a href="#"> Partner with us </a></li>
+            <li><a href="#"> Support </a></li>
+            <li><a href="#"> Help and FAQS </a></li>
+          </ul>
+        </div>
+        <div class="footer_socialmedia">
+          <h3>Follow us</h3>
+          <ul class="footer_icons">
+            <li><a href="https://x.com" target="_blank"><i class="fa fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://instagram.com" target="_blank"> <i class="fa fa-brands fa-instagram"></i></a></li>
+            <li><a href="https://facebook.com" target="_blank"><i class="fa fa-brands fa-facebook"></i></a></li>
+            <li><a href="https://youtube.com" target="_blank"><i class="fa fa-brands fa-youtube"></i></a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <div id="modalCasa" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:500px; border-radius: 8px; overflow: hidden;">
+        <div class="w3-container" style="background-color: rgb(44, 62, 80); color: white;"> 
+          <span onclick="document.getElementById('modalCasa').style.display='none'" class="w3-button w3-display-topright" style="font-size: 20px;">&times;</span>
+          <h2>Afegir Nova Casa</h2>
+        </div>
+        <div class="w3-container w3-padding-16">
+          <p style="margin-top: 0;">Introdueix les dades de la nova instal·lació domòtica:</p>
+          <label><b>Nom de la casa *</b></label>
+          <input id="inputNomCasaReal" class="w3-input w3-border w3-margin-bottom w3-round" type="text" placeholder="Ex: Apartament Platja" />
+        </div>
+        <div class="w3-container w3-padding-16 w3-light-grey w3-center">
+          <button onclick="guardarCasaReal()" class="w3-button w3-round" style="background-color: rgb(45, 179, 41); color: white;">Confirmar</button>
+          <button onclick="document.getElementById('modalCasa').style.display='none'" class="w3-button w3-red w3-round">Cancel·lar</button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="modalHabitacio" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:500px; border-radius: 8px; overflow: hidden;">
+        <div class="w3-container" style="background-color: rgb(44, 62, 80); color: white;"> 
+          <span onclick="document.getElementById('modalHabitacio').style.display='none'" class="w3-button w3-display-topright" style="font-size: 20px;">&times;</span>
+          <h2>Afegir Nova Habitació</h2>
+        </div>
+        <div class="w3-container w3-padding-16">
+          <p style="margin-top: 0;">Introdueix les dades de la nova habitació:</p>
+          <label><b>Nom de l'habitació *</b></label>
+          <input id="inputNomHabitacio" class="w3-input w3-border w3-margin-bottom w3-round" type="text" placeholder="Ex: Dormitori principal" />
+          <label><b>Planta / Nivell</b></label>
+          <input id="inputPlanta" class="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Ex: Planta baixa" />
+          <label><b>Nombre de Dispositius</b></label>
+          <input id="inputNombreDispositius" class="w3-input w3-border w3-round" type="text" placeholder="Ex: 5" />
+          <p style="font-size: 0.9em; color: gray;">* Camps obligatoris</p>
+        </div>
+        <div class="w3-container w3-padding-16 w3-light-grey w3-center">
+          <button onclick="guardarHabitacio()" class="w3-button w3-round" style="background-color: rgb(45, 179, 41); color: white;">Confirmar</button>
+          <button onclick="document.getElementById('modalHabitacio').style.display='none'" class="w3-button w3-red w3-round">Cancel·lar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalDispositiu" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:500px; border-radius: 8px; overflow: hidden;">
+        <div class="w3-container" style="background-color: rgb(44, 62, 80); color: white;"> 
+          <span onclick="document.getElementById('modalDispositiu').style.display='none'" class="w3-button w3-display-topright" style="font-size: 20px;">&times;</span>
+          <h2>Afegir Nou Dispositiu</h2>
+        </div>
+        <div class="w3-container w3-padding-16">
+          <p style="margin-top: 0;">Introdueix les dades del nou dispositiu intel·ligent:</p>
+          <label><b>Nom del dispositiu *</b></label>
+          <input id="inputNomDispositiu" class="w3-input w3-border w3-margin-bottom w3-round" type="text" placeholder="Ex: Bombeta Menjador" />
+          <label><b>Tipus (Llum, sensor, càmera...) *</b></label>
+          <input id="inputTipusDispositiu" class="w3-input w3-border w3-round" type="text" placeholder="Ex: Il·luminació" />
+          <p style="font-size: 0.9em; color: gray;">* Camps obligatoris</p>
+        </div>
+        <div class="w3-container w3-padding-16 w3-light-grey w3-center">
+          <button onclick="guardarDispositiu()" class="w3-button w3-round" style="background-color: rgb(45, 179, 41); color: white;">Confirmar</button>
+          <button onclick="document.getElementById('modalDispositiu').style.display='none'" class="w3-button w3-red w3-round">Cancel·lar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>

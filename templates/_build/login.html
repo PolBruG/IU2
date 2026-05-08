@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sessió</title>
+</head>
+<body>
+    <h2>Inici de Sessió</h2>
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/login" method="POST">
+        <input type="text" name="usuario" placeholder="Tu usuario" required>
+        
+        <input type="password" name="contrasena" placeholder="Tu contraseña" required>
+        
+        <button type="submit">Entrar</button>
+    </form>
+</body>
+</html>

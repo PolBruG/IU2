@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliente de API</title>
+</head>
+<body>
+<h1>Cliente de API</h1>
+ 
+<h2>Obtener todas las casas</h2>
+<button onclick="getcasas()">Obtener Todas las Casas</button>
+<pre id="casasResponse"></pre>
+ 
+<h2>Obtener una Casa por ID</h2>
+<label for="casaId">ID de la Casa:</label>
+<input type="number" id="casaId" placeholder="ID de la casa">
+<button onclick="getCasa()">Obtener Casa</button>
+<pre id="casaResponse"></pre>
+ 
+<h2>Agregar una Nueva Casa</h2>
+<label for="NomNovaCasa">Nombre de la Casa:</label>
+<input type="text" id="NomNovaCasa" placeholder="Nombre de la casa">
+<button onclick="addcasa()">Agregar Casa</button>
+<pre id="addcasaResponse"></pre>
+ 
+<script>
+function getcasas() {
+    fetch('/casas')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('casasResponse').innerText = JSON.stringify(data, null, 2);
+    });
+}
+ 
+function getCasa() {
+    const casaId = document.getElementById('casaId').value;
+    fetch(`/casas/${casaId}`)
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('casaResponse').innerText = JSON.stringify(data, null, 2);
+    });
+}
+ 
+function addcasa() {
+    const nom = document.getElementById('NomNovaCasa').value;
+    fetch('/casas', {method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ nom })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('addcasaResponse').innerText = JSON.stringify(data, null, 2);
+    });
+}
+</script>
+ 
+</body>
+</html>

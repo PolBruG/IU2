@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil d'usuari</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+  <header>
+	<a href="inici.html"> <img src="/static/domotica.png" alt="logo" height="40" width="40"> </a>
+    <div style="font-weight: bold; font-size: 18px; color: white;"></div>
+    <div style="width: 40px;"></div> 
+  </header>
+
+  <div class="wrapper">
+    <div class="app-container">
+      
+      <nav class="sidebar-perfil">
+        <div class="perfil-config">
+          <h3>⚙️ Configuració del compte</h3>
+          <ul class="lista-config">
+            <li><a href="#">🔒 Canvia contrasenya</a></li>
+            <li><a href="#">🔔 Notificacions</a></li>
+            <li><a href="#">🌍 Idioma: Català</a></li>
+            <li><a href="#">👤 Gestionar compte</a></li>
+            <li class="logout"><a href="/logout">❌ Tancar Sessió</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="main-content-perfil">
+        <div class="perfil-card">
+          <img src="/static/foto_perfil.png" alt="Avatar" class="perfil-imatge" onerror="this.src='https://via.placeholder.com/150'">
+          
+          <h2>Alex</h2>
+          <p class="correu">alex.tello.jose@estudiantat.upc.edu</p>
+
+          <div class="perfil-detalls">
+            <div class="detall-item">
+              <span class="detall-label">Nom complet</span>
+              <span class="detall-valor">Alex Tello Jose</span>
+            </div>
+            <div class="detall-item">
+              <span class="detall-label">Rol d'usuari</span>
+              <span class="detall-valor">Administrador</span>
+            </div>
+            <div class="detall-item">
+              <span class="detall-label">Cases assignades</span>
+              <span class="detall-valor">{{ casas }}</span>
+            </div>
+            <div class="detall-item">
+              <span class="detall-label">Data de registre</span>
+              <span class="detall-valor">15/09/2023</span>
+            </div>
+          </div>
+
+          <button class="btn-editar">Editar Perfil</button>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+</body>
+</html>

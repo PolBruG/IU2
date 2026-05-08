@@ -1,0 +1,87 @@
+[
+    {
+        "user": "admin",
+        "cases": [
+            {
+                "id": 1,
+                "nom": "Casa 1",
+                "habitacions": [
+                    {
+                        "id": 1,
+                        "nom": "Cuina",
+                        "planta": "Planta baixa",
+                        "dispositius": [
+                            {
+                                "id": 1,
+                                "nom": "Bombeta",
+                                "tipus": "Llum",
+                                "estat": "OFF"
+                            },
+                            {
+                                "id": 2,
+                                "nom": "N",
+                                "tipus": "ASDFGFSNHYRT5AHTSN",
+                                "estat": "ON"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "nom": "Menjador",
+                        "planta": "Planta baixa"
+                    },
+                    {
+                        "id": 3,
+                        "nom": "Dormitori",
+                        "planta": "Planta 1",
+                        "dispositius": []
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "nom": "Casa 2",
+                "habitacions": []
+            },
+            {
+                "id": 3,
+                "nom": "Casa 3",
+                "habitacions": []
+            },
+            {
+                "id": 4,
+                "nom": "Apartament 1",
+                "habitacions": []
+            },
+            {
+                "id": 5,
+                "nom": "Apartament 2",
+                "habitacions": []
+            }
+        ]
+    },
+    {
+        "user": "alex",
+        "cases": [
+            {
+                "id": 1,
+                "nom": "Casa 1",
+                "habitacions": [
+                    {
+                        "id": 1,
+                        "nom": "Dormitori",
+                        "planta": "Planta 2",
+                        "dispositius": [
+                            {
+                                "id": 1,
+                                "nom": "Bombeta",
+                                "tipus": "Llum",
+                                "estat": "OFF"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
